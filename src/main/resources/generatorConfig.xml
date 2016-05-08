@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 声明jdbc位置-->
+    <classPathEntry
+            location="C:/Users/zman/.m2/repository/mysql/mysql-connector-java/5.1.37/mysql-connector-java-5.1.37.jar" />
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 数据库地址、用户名密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://123.57.144.1:3306/stock" userId="stock"
+                        password="stock">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 定义domain类路径 -->
+        <javaModelGenerator targetPackage="com.zmannotes.spring.mybatis.domain"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 定义XXXMapper文件路径 -->
+        <sqlMapGenerator targetPackage="mybatis/stock"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 定义dao类的路径 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.zmannotes.spring.mybatis.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 指明表名stock -->
+        <table schema="" tableName="stock" domainObjectName="Stock"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false" />
+        <!-- 指明表名stock_detail （同一个文件中可以指定多个表） -->
+        <table schema="" tableName="stock_detail" domainObjectName="StockDetail"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false" />
+
+
+    </context>
+</generatorConfiguration>
